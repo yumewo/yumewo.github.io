@@ -690,21 +690,5 @@
         console.log('Service workers are not supported in the current browser.');
     }
   </script>
-  <script>
-      const apFixed = new APlayer({
-      element: document.getElementById('aplayer-fixed'),
-      mutex: true,
-      theme: '#97dffd',
-      order: 'random',
-      lrcType: 3,
-      fixed: true,
-    });
-    $.ajax({
-      url: 'https://api.i-meto.com/meting/api?server=netease&type=playlist&id=3104395209',
-        success: function (list) {
-        apFixed.list.add(list);
-      }
-    });
-    </script>
 </body>
 </html>
