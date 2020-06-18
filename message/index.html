@@ -112,7 +112,7 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="留言板">
 <meta property="og:url" content="https://umi-bling.github.io/message/index.html">
-<meta property="og:site_name" content="umi_bling">
+<meta property="og:site_name" content="yume">
 <meta property="og:description" content="有什么话要对我说吗？这里是你畅所欲言的地方，可以咨询，可以交流，可以感叹，可以发飙，但不可以订外卖。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://umi-bling.github.io/images/message0.jpg">
@@ -137,9 +137,9 @@
     since: '12/9/2019 11:30:00',
     onlineAPI: 'wss://api.diygod.me/online/',
     site: {
-      title: 'umi_bling',
+      title: 'yume',
       subtitle: '',
-      author: 'umi_bling'
+      author: 'yume'
     },
     duoshuo: {
       userId: '0',
@@ -183,7 +183,7 @@
 
 
 
-  <title>留言板 | umi_bling</title>
+  <title>留言板 | yume</title>
   
 
 
@@ -293,10 +293,10 @@
         <span class="logo-line-before"><i></i></span>
         <div class="site-title">
           <div id="animate" class="animate">
-            <span>H</span><span>i</span><span>,</span><span>u</span><span>m</span><span>i</span><span>_</span><span>b</span><span>l</span><span>i</span><span>n</span><span>g</span>
+            <span>H</span><span>i</span><span>,</span><span>y</span><span>u</span><span>m</span><span>e</span>
           </div>
           <div id="guide" class="guide">
-            <span>H</span><span>i</span><span>,</span><span>u</span><span>m</span><span>i</span><span>_</span><span>b</span><span>l</span><span>i</span><span>n</span><span>g</span>
+            <span>H</span><span>i</span><span>,</span><span>y</span><span>u</span><span>m</span><span>e</span>
           </div>
         </div>
         <span class="logo-line-after"><i></i></span>
@@ -316,9 +316,9 @@
   </div>
 </div>
 <div class="site-master" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-master-avatar" itemprop="image" src="/images/atama.jpg" alt="umi_bling">
+    <img class="site-master-avatar" itemprop="image" src="/images/atama.jpg" alt="yume">
     <h2 class="site-master-description" itemprop="description">
-        <span>はっきりさせなく</span><span>てもいい</span>
+        <span>生きていて</span><span>よかった</span>
     </h2>
 </div>
 
@@ -457,10 +457,10 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/card.jpg" alt="umi_bling">
+              <img class="site-author-image" itemprop="image" src="/images/card.jpg" alt="yume">
             
-              <p class="site-author-name" itemprop="name"><span style="opacity:.2;">呐呐呐</span>umi_bling</p>
-              <p class="site-description motion-element" itemprop="description">生きていてよかった</p>
+              <p class="site-author-name" itemprop="name"><span style="opacity:.2;"> </span>yume</p>
+              <p class="site-description motion-element" itemprop="description">❀</p>
           </div>
 
           <div class="links-of-author motion-element">
@@ -484,7 +484,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -495,7 +495,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -539,7 +539,7 @@
         <p>博客已萌萌哒运行<span id="since"></span><span class="my-face">(●'◡'●)ﾉ♥</span></p>
 <p>该主题来自于<a href="https://github.com/" target="_blank" rel="nofollow">DIYgod</a></p>
 
-<p>© <span itemprop="copyrightYear">2020</span> umi_bling.
+<p>© <span itemprop="copyrightYear">2020</span> yume.
     由 <a href="https://hexo.io/" target="_blank" class="external" rel="nofollow">Hexo</a> 强力驱动.
     Theme By <a href="https://github.com/DIYgod/hexo-theme-sagiri" target="_blank" class="external" rel="nofollow">Sagiri</a> v0.0.51.
     <!--<a href="/sitemap.xml" target="_blank">站点地图</a>.-->
@@ -568,6 +568,22 @@
 
     <canvas id="evanyou"></canvas>
     <div id="aplayer-fixed"></div>
+    <script>
+      const apFixed = new APlayer({
+      element: document.getElementById('aplayer-fixed'),
+      mutex: true,
+      theme: '#97dffd',
+      order: 'random',
+      lrcType: 3,
+      fixed: true,
+    });
+    $.ajax({
+      url: 'https://api.i-meto.com/meting/api?server=netease&type=playlist&id=3104395209',
+        success: function (list) {
+        apFixed.list.add(list);
+      }
+    });
+    </script>
 
     
 
