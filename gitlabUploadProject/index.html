@@ -108,17 +108,26 @@
 
 
 
-<meta name="description" content="GitLab搭建待整理…">
+<meta name="description" content="Centos 7 GitLab搭建搭建的教程是从网上整理的,以及自己遇到的一些问题的解决方案 在CentOS系统上安装所需的依赖：ssh，防火墙,postfix(用于邮件通知) ，wget，以下这些命令也会打开系统防火墙中的HTTP和SSH端口访问。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitLab安装使用">
 <meta property="og:url" content="https://umi-bling.github.io/gitlabUploadProject/index.html">
 <meta property="og:site_name" content="yume">
-<meta property="og:description" content="GitLab搭建待整理…">
+<meta property="og:description" content="Centos 7 GitLab搭建搭建的教程是从网上整理的,以及自己遇到的一些问题的解决方案 在CentOS系统上安装所需的依赖：ssh，防火墙,postfix(用于邮件通知) ，wget，以下这些命令也会打开系统防火墙中的HTTP和SSH端口访问。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-06-18T08:00:08.734Z">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/1.png">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/2.png">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/3.png">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/4.png">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/5.png">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/6.png">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/7.png">
+<meta property="og:image" content="https://umi-bling.github.io/images/2020.06.18/8.png">
+<meta property="og:updated_time" content="2020-06-30T06:01:51.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitLab安装使用">
-<meta name="twitter:description" content="GitLab搭建待整理…">
+<meta name="twitter:description" content="Centos 7 GitLab搭建搭建的教程是从网上整理的,以及自己遇到的一些问题的解决方案 在CentOS系统上安装所需的依赖：ssh，防火墙,postfix(用于邮件通知) ，wget，以下这些命令也会打开系统防火墙中的HTTP和SSH端口访问。">
+<meta name="twitter:image" content="https://umi-bling.github.io/images/2020.06.18/1.png">
 
 
 
@@ -409,7 +418,7 @@
                 
                   <span class="post-meta-item-text">字数统计</span>
                 
-                <span title="字数统计">102</span>
+                <span title="字数统计">1313</span>
               
 
               
@@ -441,15 +450,105 @@
       
 
       
-        <h2 id="GitLab搭建"><a href="#GitLab搭建" class="headerlink" title="GitLab搭建"></a>GitLab搭建</h2><p>待整理…</p>
+        <h2 id="Centos-7-GitLab搭建"><a href="#Centos-7-GitLab搭建" class="headerlink" title="Centos 7 GitLab搭建"></a>Centos 7 GitLab搭建</h2><p><u><font color="#00A0E0">搭建的教程是从网上整理的,以及自己遇到的一些问题的解决方案</font></u></p>
+<p>在CentOS系统上安装所需的依赖：ssh，防火墙,postfix(用于邮件通知) ，wget，以下这些命令也会打开系统防火墙中的HTTP和SSH端口访问。</p>
 <a id="more"></a>
 
+<h3 id="安装并配置必要的依赖关系"><a href="#安装并配置必要的依赖关系" class="headerlink" title="安装并配置必要的依赖关系"></a>安装并配置必要的依赖关系</h3><h4 id="安装SSH"><a href="#安装SSH" class="headerlink" title="安装SSH"></a>安装SSH</h4><p>安装命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install -y curl policycoreutils-pythonopenssh-server</span><br></pre></td></tr></table></figure>
 
-<h2 id="上传项目"><a href="#上传项目" class="headerlink" title="上传项目"></a>上传项目</h2><p>有配置用户名密码和SSH KEY的话跳过</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"邮箱"</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"邮箱"</span></span><br></pre></td></tr></table></figure>
+<p>将SSH服务设置成开机自启动并启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> sshd</span><br><span class="line">sudo systemctl start sshd</span><br></pre></td></tr></table></figure>
 
-<p>首先进入项目的文件夹内<br>shift右键,选择Git Bash Here</p>
+<h4 id="安装防火墙-已装直接跳过"><a href="#安装防火墙-已装直接跳过" class="headerlink" title="安装防火墙(已装直接跳过)"></a>安装防火墙(已装直接跳过)</h4><p>安装命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install firewalld systemd -y</span><br></pre></td></tr></table></figure>
+
+<p>开启防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service firewalld  start</span><br></pre></td></tr></table></figure>
+
+<p>添加http服务到firewalld,pemmanent表示永久生效，若不加–permanent系统下次启动后就会失效</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo firewall-cmd --permanent --add-service=http</span><br></pre></td></tr></table></figure>
+
+<p>重启防火墙</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl reload firewalld</span><br></pre></td></tr></table></figure>
+
+<h4 id="安装PostFix"><a href="#安装PostFix" class="headerlink" title="安装PostFix"></a>安装PostFix</h4><p>在安装Postfix期间,可能会出现配置屏幕,选择“Internet Site”并按enter键<br>使用您的服务器的外部DNS以“mail name”并按enter,如果出现额外的屏幕,继续按enter键接受默认值</p>
+<p>安装命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> postfix</span><br></pre></td></tr></table></figure>
+
+<p>将postfix服务启动并设置成开机自启动</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> postfix</span><br><span class="line">sudo systemctl start postfix</span><br></pre></td></tr></table></figure>
+
+<h4 id="wget安装-非必需"><a href="#wget安装-非必需" class="headerlink" title="wget安装(非必需)"></a>wget安装(非必需)</h4><p>检查系统中是否已经安装wget，使用命令若出现下图wget相关版本描述则说明系统中已经安装wget 若报系统找不到命令说明wget未安装<br><img src="/images/2020.06.18/1.png" alt></p>
+<p>若wget未安装则进行安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install wget</span><br></pre></td></tr></table></figure>
+
+<h4 id="vim安装-非必须"><a href="#vim安装-非必须" class="headerlink" title="vim安装(非必须)"></a>vim安装(非必须)</h4><p>vim编辑器会高亮显示,使用上方便一点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install vim -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加GitLab镜像源并安装gitlab服务器"><a href="#添加GitLab镜像源并安装gitlab服务器" class="headerlink" title="添加GitLab镜像源并安装gitlab服务器"></a>添加GitLab镜像源并安装gitlab服务器</h3><h4 id="添加gitlab镜像"><a href="#添加gitlab镜像" class="headerlink" title="添加gitlab镜像"></a>添加gitlab镜像</h4><p>安装之前需要的依赖</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install policycoreutils-python</span><br></pre></td></tr></table></figure>
+
+<p>centos 6系统的下载地址  <a href="https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el6</a></p>
+<p>centos 7系统的下载地址  <a href="https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7" target="_blank" rel="noopener">https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7</a></p>
+<p>找到自己需要的版本,进到临时文件夹目录执行,若没安装wget可以自己下载拷贝到环境中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-10.7.3-ce.0.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<h4 id="gitlab安装"><a href="#gitlab安装" class="headerlink" title="gitlab安装"></a>gitlab安装</h4><p>解压安装包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -i gitlab-ce-10.0.0-ce.0.el7.x86_64.rpm</span><br></pre></td></tr></table></figure>
+
+<p>安装过程需要些时间,如果出现下图,则说明安装成功<br><img src="/images/2020.06.18/2.png" alt></p>
+<h4 id="修改gitlab配置文件指定服务器ip和自定义端口"><a href="#修改gitlab配置文件指定服务器ip和自定义端口" class="headerlink" title="修改gitlab配置文件指定服务器ip和自定义端口"></a>修改gitlab配置文件指定服务器ip和自定义端口</h4><p>注意这里设置的端口不能被占用,默认是8080端口,如果8080已经使用,请自定义其它端口,并在防火墙设置开放相对应得端口</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/gitlab/gitlab.rb</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020.06.18/3.png" alt></p>
+<h4 id="重置并启动GitLab"><a href="#重置并启动GitLab" class="headerlink" title="重置并启动GitLab"></a>重置并启动GitLab</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl reconfigure</span><br><span class="line">gitlab-ctl restart</span><br></pre></td></tr></table></figure>
+
+<p>提示”ok: run:”表示启动成功<br><img src="/images/2020.06.18/4.png" alt></p>
+<h4 id="访问GitLab页面"><a href="#访问GitLab页面" class="headerlink" title="访问GitLab页面"></a>访问GitLab页面</h4><p>如果没有域名，直接输入服务器ip和指定端口进行访问,第一次登录需要修改密码<br>初始账户: root 密码:5iveL!fe<br><img src="/images/2020.06.18/5.png" alt></p>
+<h2 id="Gitlab汉化"><a href="#Gitlab汉化" class="headerlink" title="Gitlab汉化"></a>Gitlab汉化</h2><p>找到对应版本的汉化包下载（小版本也必须一致）<br>汉化包地址  <a href="https://gitlab.com/xhang/gitlab/tree/12-3-stable-zh" target="_blank" rel="noopener">https://gitlab.com/xhang/gitlab/tree/12-3-stable-zh</a><br>如果没有对应的汉化包,可以升级gitlab到指定版本,升级教程  <a href="https://www.jianshu.com/p/6a06361eec34" target="_blank" rel="noopener">https://www.jianshu.com/p/6a06361eec34</a></p>
+<p>解压后查看版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat gitlab-10-7-stable-zh/VERSION</span><br></pre></td></tr></table></figure>
+
+<p>查看gitlab版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head -1 /opt/gitlab/version-manifest.txt</span><br></pre></td></tr></table></figure>
+
+<p>确认版本一致后进行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp -rp /opt/gitlab/embedded/service/gitlab-rails&#123;,.bak_$(date +%F)&#125;    <span class="comment">#备份需要汉化的目录</span></span><br><span class="line">cp -rf gitlab-10-7-stable-zh/* /opt/gitlab/embedded/service/gitlab-rails/    <span class="comment">#拷贝汉化补丁进行覆盖</span></span><br></pre></td></tr></table></figure>
+
+<p>重启Gitlab</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl reconfigure</span><br><span class="line">gitlab-ctl restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="Gitlab配置"><a href="#Gitlab配置" class="headerlink" title="Gitlab配置"></a>Gitlab配置</h2><h3 id="自启动"><a href="#自启动" class="headerlink" title="自启动"></a>自启动</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">disable</span> gitlab-runsvdir.service <span class="comment">#禁止 Gitlab 开机自启动</span></span><br><span class="line">systemctl <span class="built_in">enable</span> gitlab-runsvdir.service  <span class="comment">#启用 Gitlab 开机自启动</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="根据情况修改SSH端口"><a href="#根据情况修改SSH端口" class="headerlink" title="根据情况修改SSH端口"></a>根据情况修改SSH端口</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/gitlab/gitlab.rb</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020.06.18/6.png" alt><br>去掉注释后修改对应的端口号</p>
+<h3 id="邮件配置"><a href="#邮件配置" class="headerlink" title="邮件配置"></a>邮件配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  /etc/gitlab/gitlab.rb</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020.06.18/7.png" alt></p>
+<p>以上配置修改完成后重启</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gitlab-ctl stop</span><br><span class="line">gitlab-ctl reconfigure</span><br><span class="line">gitlab-ctl start</span><br></pre></td></tr></table></figure>
+
+<p>测试邮件是否能够发送,进入控制台</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gitlab-rails console</span><br></pre></td></tr></table></figure>
+
+<p>然后在控制台提示符后输入下面的命令,发送一封测试邮件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Notify.test_email(<span class="string">'收件人邮箱'</span>, <span class="string">'邮件标题'</span>, <span class="string">'邮件正文'</span>).deliver_now</span><br></pre></td></tr></table></figure>
+
+<h3 id="根据情况修改映射页面和项目地址的IP和端口"><a href="#根据情况修改映射页面和项目地址的IP和端口" class="headerlink" title="根据情况修改映射页面和项目地址的IP和端口"></a>根据情况修改映射页面和项目地址的IP和端口</h3><p>因为我使用的服务器端口都是映射的,所以项目里面的SSH和HTTP链接都是错误的,这个配置文件在reconfigure后会重新生成,所以在配置完后再去修改</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /opt/gitlab/embedded/service/gitlab-rails/config/gitlab.yml</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/2020.06.18/8.png" alt></p>
+<h2 id="Gitlab使用"><a href="#Gitlab使用" class="headerlink" title="Gitlab使用"></a>Gitlab使用</h2><h3 id="配置账号信息和SSH"><a href="#配置账号信息和SSH" class="headerlink" title="配置账号信息和SSH"></a>配置账号信息和SSH</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"邮箱"</span></span><br><span class="line">ssh-keygen -t rsa -C <span class="string">"邮箱"</span> <span class="comment">#生成密钥,去账号设置里面绑定密钥</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="配置多密钥"><a href="#配置多密钥" class="headerlink" title="配置多密钥"></a>配置多密钥</h3><p>在用户目录的.ssh目录下创建config文件并完成相关配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#github</span></span><br><span class="line">Host github.com</span><br><span class="line">HostName github.com</span><br><span class="line">IdentityFile ~/.ssh/github  <span class="comment">#注意这个是密钥不是公钥</span></span><br><span class="line">User yumewo</span><br><span class="line"><span class="comment">#PreferredAuthentications publickey</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="上传项目"><a href="#上传项目" class="headerlink" title="上传项目"></a>上传项目</h3><p>首先进入项目的文件夹内<br>shift右键,选择Git Bash Here</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git remote add origin 新建的项目的地址</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"提交备注"</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<h3 id="更新项目"><a href="#更新项目" class="headerlink" title="更新项目"></a>更新项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">"提交备注"</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -677,7 +776,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GitLab搭建"><span class="nav-number">1.</span> <span class="nav-text">GitLab搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上传项目"><span class="nav-number">2.</span> <span class="nav-text">上传项目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Centos-7-GitLab搭建"><span class="nav-number">1.</span> <span class="nav-text">Centos 7 GitLab搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装并配置必要的依赖关系"><span class="nav-number">1.1.</span> <span class="nav-text">安装并配置必要的依赖关系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装SSH"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装防火墙-已装直接跳过"><span class="nav-number">1.1.2.</span> <span class="nav-text">安装防火墙(已装直接跳过)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装PostFix"><span class="nav-number">1.1.3.</span> <span class="nav-text">安装PostFix</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#wget安装-非必需"><span class="nav-number">1.1.4.</span> <span class="nav-text">wget安装(非必需)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vim安装-非必须"><span class="nav-number">1.1.5.</span> <span class="nav-text">vim安装(非必须)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加GitLab镜像源并安装gitlab服务器"><span class="nav-number">1.2.</span> <span class="nav-text">添加GitLab镜像源并安装gitlab服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加gitlab镜像"><span class="nav-number">1.2.1.</span> <span class="nav-text">添加gitlab镜像</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitlab安装"><span class="nav-number">1.2.2.</span> <span class="nav-text">gitlab安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改gitlab配置文件指定服务器ip和自定义端口"><span class="nav-number">1.2.3.</span> <span class="nav-text">修改gitlab配置文件指定服务器ip和自定义端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重置并启动GitLab"><span class="nav-number">1.2.4.</span> <span class="nav-text">重置并启动GitLab</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#访问GitLab页面"><span class="nav-number">1.2.5.</span> <span class="nav-text">访问GitLab页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab汉化"><span class="nav-number">2.</span> <span class="nav-text">Gitlab汉化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab配置"><span class="nav-number">3.</span> <span class="nav-text">Gitlab配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自启动"><span class="nav-number">3.1.</span> <span class="nav-text">自启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据情况修改SSH端口"><span class="nav-number">3.2.</span> <span class="nav-text">根据情况修改SSH端口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#邮件配置"><span class="nav-number">3.3.</span> <span class="nav-text">邮件配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#根据情况修改映射页面和项目地址的IP和端口"><span class="nav-number">3.4.</span> <span class="nav-text">根据情况修改映射页面和项目地址的IP和端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gitlab使用"><span class="nav-number">4.</span> <span class="nav-text">Gitlab使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置账号信息和SSH"><span class="nav-number">4.1.</span> <span class="nav-text">配置账号信息和SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置多密钥"><span class="nav-number">4.2.</span> <span class="nav-text">配置多密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#上传项目"><span class="nav-number">4.3.</span> <span class="nav-text">上传项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新项目"><span class="nav-number">4.4.</span> <span class="nav-text">更新项目</span></a></li></ol></li></ol></div>
             
 
           </div>
